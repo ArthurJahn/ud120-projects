@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from sklearn.naive_bayes import GaussianNB
 
 """ 
     This is the code to accompany the Lesson 1 (Naive Bayes) mini-project. 
@@ -22,11 +23,20 @@ from email_preprocess import preprocess
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
-
-
 #########################################################
 ### your code goes here ###
 
+clf = GaussianNB()
+
+t0 = time()
+clf.fit(features_train, labels_train)
+print "training time: ", round(time()-t0, 3), "s"
+
+t1 = time()
+clf.predict(features_test)
+print "predicting time: ", round(time()-t1, 3), "s"
+
+print "score: ", clf.score(features_test, labels_test)
 
 #########################################################
 
